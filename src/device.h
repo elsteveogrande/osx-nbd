@@ -1,3 +1,10 @@
+/*
+ * (C) 2012 Steve O'Brien.  BSD licensed.
+ * see http://www.opensource.org/licenses/BSD-2-Clause
+ * and see LICENSE in the root of this project.
+ */
+
+
 #include <libkern/libkern.h>
 #include <mach/kmod.h>
 #include <IOKit/storage/IOBlockStorageDevice.h>
