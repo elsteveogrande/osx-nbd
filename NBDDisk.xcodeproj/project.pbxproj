@@ -1,0 +1,296 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		94A371B81652031800E67012 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94A371B61652031700E67012 /* InfoPlist.strings */; };
+		94A371BB1652031900E67012 /* NBDDisk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A371BA1652031900E67012 /* NBDDisk.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		94A371AE1652031500E67012 /* NBDDisk.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NBDDisk.kext; sourceTree = BUILT_PRODUCTS_DIR; };
+		94A371B21652031600E67012 /* Kernel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kernel.framework; path = System/Library/Frameworks/Kernel.framework; sourceTree = SDKROOT; };
+		94A371B51652031700E67012 /* NBDDisk-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NBDDisk-Info.plist"; sourceTree = "<group>"; };
+		94A371B71652031700E67012 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		94A371B91652031800E67012 /* NBDDisk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBDDisk.h; sourceTree = "<group>"; };
+		94A371BA1652031900E67012 /* NBDDisk.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NBDDisk.cpp; sourceTree = "<group>"; };
+		94A371BC1652031900E67012 /* NBDDisk-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NBDDisk-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		94A371A91652031300E67012 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		94A371A11652031200E67012 = {
+			isa = PBXGroup;
+			children = (
+				94A371B31652031600E67012 /* NBDDisk */,
+				94A371B01652031500E67012 /* Frameworks */,
+				94A371AF1652031500E67012 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		94A371AF1652031500E67012 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				94A371AE1652031500E67012 /* NBDDisk.kext */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		94A371B01652031500E67012 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94A371B11652031600E67012 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		94A371B11652031600E67012 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94A371B21652031600E67012 /* Kernel.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		94A371B31652031600E67012 /* NBDDisk */ = {
+			isa = PBXGroup;
+			children = (
+				94A371B91652031800E67012 /* NBDDisk.h */,
+				94A371BA1652031900E67012 /* NBDDisk.cpp */,
+				94A371B41652031700E67012 /* Supporting Files */,
+			);
+			path = NBDDisk;
+			sourceTree = "<group>";
+		};
+		94A371B41652031700E67012 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				94A371B51652031700E67012 /* NBDDisk-Info.plist */,
+				94A371B61652031700E67012 /* InfoPlist.strings */,
+				94A371BC1652031900E67012 /* NBDDisk-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		94A371AA1652031300E67012 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		94A371AD1652031300E67012 /* NBDDisk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 94A371BF1652031900E67012 /* Build configuration list for PBXNativeTarget "NBDDisk" */;
+			buildPhases = (
+				94A371A81652031300E67012 /* Sources */,
+				94A371A91652031300E67012 /* Frameworks */,
+				94A371AA1652031300E67012 /* Headers */,
+				94A371AB1652031300E67012 /* Resources */,
+				94A371AC1652031300E67012 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NBDDisk;
+			productName = NBDDisk;
+			productReference = 94A371AE1652031500E67012 /* NBDDisk.kext */;
+			productType = "com.apple.product-type.kernel-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		94A371A31652031300E67012 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Steve O'Brien";
+			};
+			buildConfigurationList = 94A371A61652031300E67012 /* Build configuration list for PBXProject "NBDDisk" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 94A371A11652031200E67012;
+			productRefGroup = 94A371AF1652031500E67012 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				94A371AD1652031300E67012 /* NBDDisk */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		94A371AB1652031300E67012 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94A371B81652031800E67012 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		94A371AC1652031300E67012 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		94A371A81652031300E67012 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94A371BB1652031900E67012 /* NBDDisk.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		94A371B61652031700E67012 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				94A371B71652031700E67012 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		94A371BD1652031900E67012 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		94A371BE1652031900E67012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		94A371C01652031900E67012 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NBDDisk/NBDDisk-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "NBDDisk/NBDDisk-Info.plist";
+				MODULE_NAME = cc.obrien.NBDDisk;
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Debug;
+		};
+		94A371C11652031900E67012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "NBDDisk/NBDDisk-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "NBDDisk/NBDDisk-Info.plist";
+				MODULE_NAME = cc.obrien.NBDDisk;
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		94A371A61652031300E67012 /* Build configuration list for PBXProject "NBDDisk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94A371BD1652031900E67012 /* Debug */,
+				94A371BE1652031900E67012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		94A371BF1652031900E67012 /* Build configuration list for PBXNativeTarget "NBDDisk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				94A371C01652031900E67012 /* Debug */,
+				94A371C11652031900E67012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 94A371A31652031300E67012 /* Project object */;
+}
