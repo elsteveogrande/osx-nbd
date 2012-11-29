@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		94A371B81652031800E67012 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94A371B61652031700E67012 /* InfoPlist.strings */; };
 		94A371BB1652031900E67012 /* NBDDisk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A371BA1652031900E67012 /* NBDDisk.cpp */; };
+		94A371C416520F2D00E67012 /* NBDDiskStorageDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A371C216520F2C00E67012 /* NBDDiskStorageDevice.cpp */; };
+		94A371C516520F2D00E67012 /* NBDDiskStorageDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A371C316520F2C00E67012 /* NBDDiskStorageDevice.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		94A371B91652031800E67012 /* NBDDisk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBDDisk.h; sourceTree = "<group>"; };
 		94A371BA1652031900E67012 /* NBDDisk.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NBDDisk.cpp; sourceTree = "<group>"; };
 		94A371BC1652031900E67012 /* NBDDisk-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NBDDisk-Prefix.pch"; sourceTree = "<group>"; };
+		94A371C216520F2C00E67012 /* NBDDiskStorageDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBDDiskStorageDevice.cpp; sourceTree = "<group>"; };
+		94A371C316520F2C00E67012 /* NBDDiskStorageDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDDiskStorageDevice.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,8 @@
 				94A371B91652031800E67012 /* NBDDisk.h */,
 				94A371BA1652031900E67012 /* NBDDisk.cpp */,
 				94A371B41652031700E67012 /* Supporting Files */,
+				94A371C216520F2C00E67012 /* NBDDiskStorageDevice.cpp */,
+				94A371C316520F2C00E67012 /* NBDDiskStorageDevice.h */,
 			);
 			path = NBDDisk;
 			sourceTree = "<group>";
@@ -92,6 +98,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94A371C516520F2D00E67012 /* NBDDiskStorageDevice.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94A371BB1652031900E67012 /* NBDDisk.cpp in Sources */,
+				94A371C416520F2D00E67012 /* NBDDiskStorageDevice.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
