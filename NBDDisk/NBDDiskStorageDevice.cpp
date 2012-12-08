@@ -6,12 +6,50 @@
 //  Copyright (c) 2012 Steve O'Brien. All rights reserved.
 //
 
+#include <IOKit/storage/IOBlockStorageDevice.h>
 #include "NBDDiskStorageDevice.h"
 
+#define super IOBlockStorageDevice
 
-bool cc_obrien_NBDDiskStorageDevice::IOBlockStorageDevice::init(OSDictionary *properties)
+
+bool cc_obrien_NBDDiskStorageDevice::init(OSDictionary *properties)
 {
+	if(! super::init(properties))
+	{
+		return false;
+	}
+	
+	this->blockCount = provider->getByteCount() / provider->getBlockSize();
+
 	return true;
+}
+
+
+bool cc_obrien_NBDDiskStorageDevice::attach(IOService *provider)
+{
+	if(! super::attach(provider))
+	{
+		return false;
+	}
+	
+	this->provider = OSDynamicCast(cc_obrien_NBDBlockService, provider);
+	if(! this->provider)
+	{
+		return false;
+	}
+	
+	return true;
+}
+
+
+void cc_obrien_NBDDiskStorageDevice::detach(IOService *provider)
+{
+	if(provider == this->provider)
+	{
+		this->provider = NULL;
+	}
+	
+	super::detach(provider);
 }
 
 
@@ -31,7 +69,7 @@ UInt32 cc_obrien_NBDDiskStorageDevice::doGetFormatCapacities(UInt64 *byteCapacit
 {
 	if(byteCapacity != 0 && capacitiesMaxCount >= 1)
 	{
-		*byteCapacity = size();
+		*byteCapacity = this->provider->getByteCount();
 	}
 	
 	return 1;
@@ -80,7 +118,7 @@ char * cc_obrien_NBDDiskStorageDevice::getAdditionalDeviceInfoString()
 
 IOReturn cc_obrien_NBDDiskStorageDevice::reportBlockSize(UInt64 *blockSize)
 {
-	*blockSize = BS();
+	*blockSize = (UInt64) this->provider->getBlockSize();
 	return kIOReturnSuccess;
 }
 
@@ -101,15 +139,16 @@ IOReturn cc_obrien_NBDDiskStorageDevice::reportLockability(bool *isLockable)
 
 IOReturn cc_obrien_NBDDiskStorageDevice::reportMaxValidBlock(UInt64 *maxBlock)
 {
-	UInt64 blockSize;
-	this->reportBlockSize(&blockSize);
-	return size() / blockSize;
+	*maxBlock = this->blockCount - 1;
+	return kIOReturnSuccess;
 }
 
 
 IOReturn cc_obrien_NBDDiskStorageDevice::reportMediaState(bool *mediaPresent, bool *changedState)
 {
-	mediastate();
+	*mediaPresent = true;
+	*changedState = false;
+	return kIOReturnSuccess;
 }
 
 
@@ -130,13 +169,15 @@ IOReturn cc_obrien_NBDDiskStorageDevice::reportRemovability(bool *isRemovable)
 
 IOReturn cc_obrien_NBDDiskStorageDevice::reportWriteProtection(bool *isWriteProtected)
 {
-	*isWriteProtected = ! writable();
+	*isWriteProtected = ! this->provider->isWritable();
+	return kIOReturnSuccess;
 }
 
 
 IOReturn cc_obrien_NBDDiskStorageDevice::getWriteCacheState(bool *enabled)
 {
 	*enabled = false;
+	return kIOReturnSuccess;
 }
 
 
@@ -148,38 +189,42 @@ IOReturn cc_obrien_NBDDiskStorageDevice::setWriteCacheState(bool enabled)
 
 IOReturn cc_obrien_NBDDiskStorageDevice::doAsyncReadWrite(IOMemoryDescriptor *buffer, UInt64 block, UInt64 nblks, IOStorageAttributes *attributes, IOStorageCompletion *completion)
 {
-	io();
-}
-
-
-IOReturn cc_obrien_NBDDiskStorageDevice::requestIdle()
-{
-	return kIOReturnSuccess;
-}
-
-
-IOReturn cc_obrien_NBDDiskStorageDevice::doDiscard(UInt64 block, UInt64 nblks)
-{
-	this->wipe(block, nblks);
-	return kIOReturnSuccess;
-}
-
-
-IOReturn cc_obrien_NBDDiskStorageDevice::doUnmap(IOBlockStorageDeviceExtent *extents, UInt32 extentsCount, UInt32 options)
-{
-	int i;
+	IOByteCount actualCount = 0;
 	
-	for(i=0; i<extentsCount; i++)
+	if(! this->provider->isReady())
 	{
-		// TODO
+		return kIOReturnNotAttached;
+	}
+	
+	if(block + nblks > this->blockCount)
+	{
+		return kIOReturnBadArgument;
 	}
 
+	if(buffer->getDirection() == kIODirectionIn)
+	{
+		actualCount = provider->performRead(
+			buffer,
+			block * this->provider->getBlockSize(),
+			nblks * this->provider->getBlockSize());
+	}
+	else if(buffer->getDirection() == kIODirectionIn)
+	{
+		if(! this->provider->isWritable())
+		{
+			return kIOReturnNotWritable;
+		}
+
+		actualCount = provider->performWrite(
+			buffer,
+			block * this->provider->getBlockSize(),
+			nblks * this->provider->getBlockSize());
+	}
+	else
+	{
+		return kIOReturnBadArgument;
+	}
+	
+	(completion->action)(completion->target, completion->parameter, kIOReturnSuccess, actualCount);
 	return kIOReturnSuccess;
 }
-
-
-void cc_obrien_NBDDiskStorageDevice::wipe(unsigned long long block, unsigned long long count)
-{
-	// TODO
-}
-

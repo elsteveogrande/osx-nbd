@@ -10,6 +10,7 @@
 #define __NBDDisk__NBDDiskStorageDevice__
 
 #include <IOKit/storage/IOBlockStorageDevice.h>
+#include "NBDBlockService.h"
 
 
 class cc_obrien_NBDDiskStorageDevice : public IOBlockStorageDevice
@@ -17,12 +18,13 @@ class cc_obrien_NBDDiskStorageDevice : public IOBlockStorageDevice
 	OSDeclareDefaultStructors(cc_obrien_NBDDiskStorageDevice)
 	
 private:
-	void wipe(unsigned long long block, unsigned long long count);
-
-protected:
+	cc_obrien_NBDBlockService *provider;
+	UInt64 blockCount;
 
 public:
-	virtual bool init(UInt64 diskSize, OSDictionary *properties = 0);
+	virtual bool init(OSDictionary *properties);
+	virtual bool attach(IOService *provider);
+	virtual void detach(IOService *provider);
 	virtual IOReturn doEjectMedia();
 	virtual IOReturn doFormatMedia(UInt64 byteCapacity);
 	virtual UInt32 doGetFormatCapacities(UInt64 *byteCapacity, UInt32 capacitiesMaxCount) const;
@@ -43,9 +45,6 @@ public:
 	virtual IOReturn getWriteCacheState(bool *enabled);
 	virtual IOReturn setWriteCacheState(bool enabled);
 	virtual IOReturn doAsyncReadWrite(IOMemoryDescriptor *buffer, UInt64 block, UInt64 nblks, IOStorageAttributes *attributes, IOStorageCompletion *completion);
-	virtual IOReturn requestIdle();
-	virtual IOReturn doDiscard(UInt64 block, UInt64 nblks);
-	virtual IOReturn doUnmap(IOBlockStorageDeviceExtent *extents, UInt32 extentsCount, UInt32 options);
 };
 
 #endif /* defined(__NBDDisk__NBDDiskStorageDevice__) */
