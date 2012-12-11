@@ -20,6 +20,7 @@ class cc_obrien_NBDDiskStorageDevice : public IOBlockStorageDevice
 private:
 	cc_obrien_NBDBlockService *provider;
 	UInt64 blockCount;
+	bool lastAskedState;
 
 public:
 	virtual bool init(OSDictionary *properties);

@@ -8,6 +8,7 @@
 
 #include <IOKit/storage/IOBlockStorageDevice.h>
 #include "NBDDiskStorageDevice.h"
+#include "NBDBlockService.h"
 
 #define super IOBlockStorageDevice
 
@@ -22,14 +23,15 @@ bool cc_obrien_NBDDiskStorageDevice::init(OSDictionary *properties)
 		return false;
 	}
 	
-	if(provider->getByteCount() % provider->getBlockSize())
+	if(this->provider->getByteCount() % this->provider->getBlockSize())
 	{
 		// not divisible?!
 		return false;
 	}
 	
-	this->blockCount = provider->getByteCount() / provider->getBlockSize();
-
+	this->blockCount = this->provider->getByteCount() / this->provider->getBlockSize();
+	this->lastAskedState = this->provider->isReady();
+	
 	return true;
 }
 
@@ -76,11 +78,17 @@ IOReturn cc_obrien_NBDDiskStorageDevice::doFormatMedia(UInt64 byteCapacity)
 
 UInt32 cc_obrien_NBDDiskStorageDevice::doGetFormatCapacities(UInt64 *byteCapacities, UInt32 capacitiesMaxCount) const
 {
-	if(!byteCapacities || capacitiesMaxCount < 1)
+	if(! byteCapacities)
 	{
-		return 0;
+		return 1;  // we require an array with a size of only 1
 	}
 	
+	if(capacitiesMaxCount < 1)
+	{
+		return 0;  // error
+	}
+
+	// populate one item
 	byteCapacities[0] = this->provider->getByteCount();
 	return 1;
 }
@@ -156,8 +164,10 @@ IOReturn cc_obrien_NBDDiskStorageDevice::reportMaxValidBlock(UInt64 *maxBlock)
 
 IOReturn cc_obrien_NBDDiskStorageDevice::reportMediaState(bool *mediaPresent, bool *changedState)
 {
-	*mediaPresent = (this->provider && this->provider->isReady());
-	*changedState = false;
+	const bool ready = (this->provider && this->provider->isReady());
+	*mediaPresent = ready;
+	*changedState = (this->lastAskedState != ready);
+	this->lastAskedState = ready;
 	return kIOReturnSuccess;
 }
 
@@ -201,34 +211,38 @@ IOReturn cc_obrien_NBDDiskStorageDevice::doAsyncReadWrite(IOMemoryDescriptor *bu
 {
 	IOByteCount actualCount = 0;
 	
-	if(!this->provider || !this->provider->isReady())
+	cc_obrien_NBDBlockService *provider = this->provider;
+	
+	if(! (provider && this->provider->isReady()) )
 	{
 		return kIOReturnNotAttached;
 	}
 	
-	if(block + nblks > this->blockCount)
+	if( (block + nblks) > this->blockCount )
 	{
 		return kIOReturnBadArgument;
 	}
 
+	const UInt32 blockSize = provider->getBlockSize();
+	
 	if(buffer->getDirection() == kIODirectionIn)
 	{
 		actualCount = provider->performRead(
 			buffer,
-			block * this->provider->getBlockSize(),
-			nblks * this->provider->getBlockSize());
+			block * blockSize,
+			nblks * blockSize);
 	}
 	else if(buffer->getDirection() == kIODirectionIn)
 	{
-		if(! this->provider->isWritable())
+		if(! provider->isWritable())
 		{
 			return kIOReturnNotWritable;
 		}
 
 		actualCount = provider->performWrite(
 			buffer,
-			block * this->provider->getBlockSize(),
-			nblks * this->provider->getBlockSize());
+			block * blockSize,
+			nblks * blockSize);
 	}
 	else
 	{
