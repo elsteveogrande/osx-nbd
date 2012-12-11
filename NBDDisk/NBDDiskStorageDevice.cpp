@@ -12,6 +12,9 @@
 #define super IOBlockStorageDevice
 
 
+OSDefineMetaClassAndStructors(cc_obrien_NBDDiskStorageDevice, super)
+
+
 bool cc_obrien_NBDDiskStorageDevice::init(OSDictionary *properties)
 {
 	if(! super::init(properties))
