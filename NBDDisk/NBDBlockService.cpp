@@ -16,13 +16,13 @@ OSDefineMetaClassAndStructors(cc_obrien_NBDBlockService, IOService)
 #define super IOService
 
 
-UInt64 cc_obrien_NBDBlockService::getByteCount()
+UInt64 cc_obrien_NBDBlockService::getByteCount() const
 {
 	return FIXED_CACHE_SIZE;
 }
 
 
-UInt32 cc_obrien_NBDBlockService::getBlockSize()
+UInt32 cc_obrien_NBDBlockService::getBlockSize() const
 {
 	return FIXED_BLOCK_SIZE;
 }
@@ -36,6 +36,7 @@ bool cc_obrien_NBDBlockService::isWritable()
 
 bool cc_obrien_NBDBlockService::isReady()
 {
+	// currently this only implements RAM device; it's always ready!
 	return true;
 }
 

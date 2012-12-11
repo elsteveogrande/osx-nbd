@@ -30,8 +30,8 @@ public:
 	virtual IOByteCount performRead(IOMemoryDescriptor *dest, UInt64 offset, UInt64 count);
 	virtual IOByteCount performWrite(IOMemoryDescriptor *src, UInt64 offset, UInt64 count);
 	
-	UInt64 getByteCount();
-	UInt32 getBlockSize();
+	UInt64 getByteCount() const;
+	UInt32 getBlockSize() const;
 	bool isWritable();
 	bool isReady();
 };
