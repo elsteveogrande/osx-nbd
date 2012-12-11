@@ -203,7 +203,12 @@ IOReturn cc_obrien_NBDDiskStorageDevice::getWriteCacheState(bool *enabled)
 
 IOReturn cc_obrien_NBDDiskStorageDevice::setWriteCacheState(bool enabled)
 {
-	return kIOReturnUnsupported;
+	if(enabled)
+	{
+		return kIOReturnUnsupported;
+	}
+	
+	return kIOReturnSuccess;
 }
 
 
@@ -218,7 +223,7 @@ IOReturn cc_obrien_NBDDiskStorageDevice::doAsyncReadWrite(IOMemoryDescriptor *bu
 		return kIOReturnNotAttached;
 	}
 	
-	if( (block + nblks) > this->blockCount )
+	if( (block + nblks) > (this->blockCount) )
 	{
 		return kIOReturnBadArgument;
 	}
@@ -232,7 +237,7 @@ IOReturn cc_obrien_NBDDiskStorageDevice::doAsyncReadWrite(IOMemoryDescriptor *bu
 			block * blockSize,
 			nblks * blockSize);
 	}
-	else if(buffer->getDirection() == kIODirectionIn)
+	else if(buffer->getDirection() == kIODirectionOut)
 	{
 		if(! provider->isWritable())
 		{
