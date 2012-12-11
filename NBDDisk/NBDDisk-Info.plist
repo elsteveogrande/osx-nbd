@@ -39,9 +39,11 @@
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2012 Steve O&apos;Brien. All rights reserved.</string>
+	<string>Copyright © 2012 Steve O&apos;Brien. All rights reserved. [Source under BSD-2-Clause license]</string>
 	<key>OSBundleLibraries</key>
 	<dict>
+		<key>com.apple.kpi.bsd</key>
+		<string>9.0.0</string>
 		<key>com.apple.iokit.IOStorageFamily</key>
 		<string>1.6</string>
 		<key>com.apple.kpi.iokit</key>
