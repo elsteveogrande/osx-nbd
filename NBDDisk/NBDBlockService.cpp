@@ -44,7 +44,6 @@ bool cc_obrien_NBDBlockService::isReady()
 bool cc_obrien_NBDBlockService::start(IOService *provider)
 {
 	bool ret = false;
-	
 	this->memory = NULL;
 	this->buffer = NULL;
 
@@ -53,13 +52,17 @@ bool cc_obrien_NBDBlockService::start(IOService *provider)
 		goto abort;
 	}
 	
-	this->memory = IOBufferMemoryDescriptor::withCapacity(FIXED_CACHE_SIZE, kIODirectionOutIn);
+	this->memory = IOBufferMemoryDescriptor::withCapacity(FIXED_CACHE_SIZE, kIODirectionInOut);
 	if(! this->memory)
 	{
 		goto abort;
 	}
 	
 	this->buffer = this->memory->getBytesNoCopy();
+	if(! this->buffer)
+	{
+		goto abort;
+	}
 	
 	if(! this->buildDevice())
 	{
@@ -70,13 +73,13 @@ bool cc_obrien_NBDBlockService::start(IOService *provider)
 	goto out;
 
 abort:
-	
-out:
 	if(this->memory)
 	{
 		this->memory->release();
+		this->memory = NULL;
 	}
 
+out:
 	return ret;
 }
 
@@ -86,6 +89,7 @@ void cc_obrien_NBDBlockService::free()
 	if(this->memory)
 	{
 		this->memory->release();
+		this->memory = NULL;
 	}
 	
 	super::free();
@@ -126,15 +130,20 @@ bool cc_obrien_NBDBlockService::buildDevice()
 	}
 	
 	nub->registerService();
-	return true;
+
+	ret = true;
+	goto out;
 	
 abort:
+	/* nothing special to do when aborting */
+
+out:
+	/* note; have to unconditionally un-retain this nub.  The OS itself will retain it */
 	if(nub)
 	{
 		nub->release();
 	}
-	
-out:
+
 	return ret;
 }
 

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		940F2BAC1673BC4D0021006D /* NBDBlockService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 940F2BAA1673BC4D0021006D /* NBDBlockService.cpp */; };
 		940F2BAD1673BC4D0021006D /* NBDBlockService.h in Headers */ = {isa = PBXBuildFile; fileRef = 940F2BAB1673BC4D0021006D /* NBDBlockService.h */; };
+		943611961677C79500036A9B /* NBDManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 943611941677C79500036A9B /* NBDManager.cpp */; };
+		943611971677C79500036A9B /* NBDManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 943611951677C79500036A9B /* NBDManager.h */; };
 		94A371B81652031800E67012 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94A371B61652031700E67012 /* InfoPlist.strings */; };
 		94A371C416520F2D00E67012 /* NBDDiskStorageDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A371C216520F2C00E67012 /* NBDDiskStorageDevice.cpp */; };
 		94A371C516520F2D00E67012 /* NBDDiskStorageDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A371C316520F2C00E67012 /* NBDDiskStorageDevice.h */; };
@@ -17,6 +19,8 @@
 /* Begin PBXFileReference section */
 		940F2BAA1673BC4D0021006D /* NBDBlockService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBDBlockService.cpp; sourceTree = "<group>"; };
 		940F2BAB1673BC4D0021006D /* NBDBlockService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDBlockService.h; sourceTree = "<group>"; };
+		943611941677C79500036A9B /* NBDManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBDManager.cpp; sourceTree = "<group>"; };
+		943611951677C79500036A9B /* NBDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDManager.h; sourceTree = "<group>"; };
 		94A371AE1652031500E67012 /* NBDDisk.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NBDDisk.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A371B21652031600E67012 /* Kernel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kernel.framework; path = System/Library/Frameworks/Kernel.framework; sourceTree = SDKROOT; };
 		94A371B51652031700E67012 /* NBDDisk-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NBDDisk-Info.plist"; sourceTree = "<group>"; };
@@ -73,11 +77,13 @@
 		94A371B31652031600E67012 /* NBDDisk */ = {
 			isa = PBXGroup;
 			children = (
-				94A371B41652031700E67012 /* Supporting Files */,
+				943611941677C79500036A9B /* NBDManager.cpp */,
+				943611951677C79500036A9B /* NBDManager.h */,
 				94A371C216520F2C00E67012 /* NBDDiskStorageDevice.cpp */,
 				94A371C316520F2C00E67012 /* NBDDiskStorageDevice.h */,
 				940F2BAA1673BC4D0021006D /* NBDBlockService.cpp */,
 				940F2BAB1673BC4D0021006D /* NBDBlockService.h */,
+				94A371B41652031700E67012 /* Supporting Files */,
 			);
 			path = NBDDisk;
 			sourceTree = "<group>";
@@ -101,6 +107,7 @@
 			files = (
 				94A371C516520F2D00E67012 /* NBDDiskStorageDevice.h in Headers */,
 				940F2BAD1673BC4D0021006D /* NBDBlockService.h in Headers */,
+				943611971677C79500036A9B /* NBDManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +187,7 @@
 			files = (
 				94A371C416520F2D00E67012 /* NBDDiskStorageDevice.cpp in Sources */,
 				940F2BAC1673BC4D0021006D /* NBDBlockService.cpp in Sources */,
+				943611961677C79500036A9B /* NBDManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

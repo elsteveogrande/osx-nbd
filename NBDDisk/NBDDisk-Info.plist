@@ -29,9 +29,9 @@
 			<key>CFBundleIdentifier</key>
 			<string>cc.obrien.${PRODUCT_NAME:rfc1034identifier}</string>
 			<key>IOClass</key>
-			<string>cc_obrien_NBDBlockService</string>
+			<string>cc_obrien_NBDManager</string>
 			<key>IOMatchCategory</key>
-			<string>cc_obrien_NBDBlockService</string>
+			<string>cc_obrien_NBDManager</string>
 			<key>IOProviderClass</key>
 			<string>IOResources</string>
 			<key>IOResourceMatch</key>
