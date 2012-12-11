@@ -69,12 +69,13 @@ bool cc_obrien_NBDBlockService::start(IOService *provider)
 	goto out;
 
 abort:
+	
+out:
 	if(this->memory)
 	{
 		this->memory->release();
 	}
-	
-out:
+
 	return ret;
 }
 
