@@ -22,6 +22,12 @@ bool cc_obrien_NBDDiskStorageDevice::init(OSDictionary *properties)
 		return false;
 	}
 	
+	if(provider->getByteCount() % provider->getBlockSize())
+	{
+		// not divisible?!
+		return false;
+	}
+	
 	this->blockCount = provider->getByteCount() / provider->getBlockSize();
 
 	return true;
@@ -68,13 +74,14 @@ IOReturn cc_obrien_NBDDiskStorageDevice::doFormatMedia(UInt64 byteCapacity)
 }
 
 
-UInt32 cc_obrien_NBDDiskStorageDevice::doGetFormatCapacities(UInt64 *byteCapacity, UInt32 capacitiesMaxCount) const
+UInt32 cc_obrien_NBDDiskStorageDevice::doGetFormatCapacities(UInt64 *byteCapacities, UInt32 capacitiesMaxCount) const
 {
-	if(byteCapacity != 0 && capacitiesMaxCount >= 1)
+	if(!byteCapacities || capacitiesMaxCount < 1)
 	{
-		*byteCapacity = this->provider->getByteCount();
+		return 0;
 	}
 	
+	byteCapacities[0] = this->provider->getByteCount();
 	return 1;
 }
 
@@ -97,13 +104,13 @@ IOReturn cc_obrien_NBDDiskStorageDevice::doSynchronizeCache()
 
 char * cc_obrien_NBDDiskStorageDevice::getVendorString()
 {
-	return (char *) "obrien.cc";
+	return (char *) "(networked)";
 }
 
 
 char * cc_obrien_NBDDiskStorageDevice::getProductString()
 {
-	return (char *) "LBD";
+	return (char *) "NBD Disk";
 }
 
 
@@ -115,7 +122,7 @@ char * cc_obrien_NBDDiskStorageDevice::getRevisionString()
 
 char * cc_obrien_NBDDiskStorageDevice::getAdditionalDeviceInfoString()
 {
-	return (char *) "lbd device host=%s port=%d size=%lld bytes";
+	return (char *) "nbd device host=%s port=%d size=%lld bytes";
 }
 
 
@@ -149,7 +156,7 @@ IOReturn cc_obrien_NBDDiskStorageDevice::reportMaxValidBlock(UInt64 *maxBlock)
 
 IOReturn cc_obrien_NBDDiskStorageDevice::reportMediaState(bool *mediaPresent, bool *changedState)
 {
-	*mediaPresent = true;
+	*mediaPresent = (this->provider && this->provider->isReady());
 	*changedState = false;
 	return kIOReturnSuccess;
 }
@@ -172,7 +179,7 @@ IOReturn cc_obrien_NBDDiskStorageDevice::reportRemovability(bool *isRemovable)
 
 IOReturn cc_obrien_NBDDiskStorageDevice::reportWriteProtection(bool *isWriteProtected)
 {
-	*isWriteProtected = ! this->provider->isWritable();
+	*isWriteProtected = ! (this->provider && this->provider->isWritable());
 	return kIOReturnSuccess;
 }
 
@@ -194,7 +201,7 @@ IOReturn cc_obrien_NBDDiskStorageDevice::doAsyncReadWrite(IOMemoryDescriptor *bu
 {
 	IOByteCount actualCount = 0;
 	
-	if(! this->provider->isReady())
+	if(!this->provider || !this->provider->isReady())
 	{
 		return kIOReturnNotAttached;
 	}
