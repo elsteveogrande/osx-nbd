@@ -7,6 +7,19 @@
 //
 
 #include <IOKit/storage/IOBlockStorageDevice.h>
+#include <sys/types.h>                       // (miscfs/devfs/devfs.h, ...)
+#include <miscfs/devfs/devfs.h>              // (devfs_make_node, ...)
+#include <sys/buf.h>                         // (buf_t, ...)
+#include <sys/fcntl.h>                       // (FWRITE, ...)
+#include <sys/ioccom.h>                      // (IOCGROUP, ...)
+#include <sys/proc.h>                        // (proc_is64bit, ...)
+#include <sys/stat.h>                        // (S_ISBLK, ...)
+#include <sys/systm.h>                       // (DEV_BSIZE, ...)
+#include <IOKit/assert.h>
+#include <IOKit/IOBSD.h>
+#include <IOKit/IOLib.h>
+#include <IOKit/IOKitKeys.h>
+#include <IOKit/storage/IOMedia.h>
 #include "NBDDiskStorageDevice.h"
 #include "NBDBlockService.h"
 
@@ -31,6 +44,9 @@ bool cc_obrien_NBDDiskStorageDevice::init(OSDictionary *properties)
 	
 	this->blockCount = this->provider->getByteCount() / this->provider->getBlockSize();
 	this->lastAskedState = this->provider->isReady();
+
+	this->setProperty(kIOBSDNameKey, "nbd");
+	this->setProperty(kIOBSDMajorKey, 92);
 	
 	return true;
 }

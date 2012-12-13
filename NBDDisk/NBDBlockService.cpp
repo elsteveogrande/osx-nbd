@@ -5,6 +5,7 @@
 //  Copyright (c) 2012 Steve O'Brien. All rights reserved.
 //
 
+#include <IOKit/IOLib.h>
 #include "NBDBlockService.h"
 #include "NBDDiskStorageDevice.h"
 
@@ -86,13 +87,18 @@ out:
 
 void cc_obrien_NBDBlockService::free()
 {
+	IOLog("nbdblockservice: freeing this\n");
+
 	if(this->memory)
 	{
 		this->memory->release();
 		this->memory = NULL;
 	}
-	
+
+	IOLog("nbdblockservice: freeing super\n");
 	super::free();
+
+	IOLog("nbdblockservice: freed\n");
 }
 
 

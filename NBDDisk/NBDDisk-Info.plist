@@ -26,6 +26,8 @@
 	<dict>
 		<key>NBDDisk</key>
 		<dict>
+			<key>IOKitDebug</key>
+			<integer>65535</integer>
 			<key>CFBundleIdentifier</key>
 			<string>cc.obrien.${PRODUCT_NAME:rfc1034identifier}</string>
 			<key>IOClass</key>
