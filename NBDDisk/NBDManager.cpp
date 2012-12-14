@@ -27,8 +27,12 @@
 #include <IOKit/storage/IOMediaBSDClient.h>
 #include <IOKit/IOLib.h>
 #include <IOKit/IOService.h>
+#include <sys/errno.h>
+#include <sys/kpi_socket.h>
+#include <sys/kpi_mbuf.h>
 #include "NBDManager.h"
 #include "NBDBlockService.h"
+#include "nbd_control.h"
 
 #define super IOService
 
@@ -41,13 +45,13 @@ extern "C"
 	{
 		/* d_open     */ nbd_open,
 		/* d_close    */ nbd_close,
-		/* d_read     */ nbd_read,
-		/* d_write    */ nbd_write,
+		/* d_read     */ eno_rdwrt,
+		/* d_write    */ eno_rdwrt,
 		/* d_ioctl    */ nbd_ioctl,
-		/* d_stop     */ nbd_stop,
-		/* d_reset    */ nbd_reset,
+		/* d_stop     */ eno_stop,
+		/* d_reset    */ eno_reset,
 		/* d_ttys     */ 0,
-		/* d_select   */ nbd_select,
+		/* d_select   */ eno_select,
 		/* d_mmap     */ eno_mmap,
 		/* d_strategy */ eno_strat,
 		/* d_getc     */ eno_getc,
@@ -151,49 +155,46 @@ IOService * cc_obrien_NBDManager::probe(IOService *provider, SInt32 *score)
 
 int nbd_ioctl(dev_t dev, u_long cmd, caddr_t data, int flags, proc_t proc)
 {
-	IOLog("nbd ioctl: dev=0x%x cmd=0x%lx data=%p flags=0x%x proc=%p\n", dev, cmd, data, flags, proc);
-	return EIO;
+	int port;
+	int family;
+	void * addr_bytes;
+	if(cmd == NBD_CTL_CONNECT_TCPIP4)
+	{
+		nbd_control_ip4 *ip4 = (nbd_control_ip4 *) data;
+		port = ip4->tcp_port;
+		addr_bytes = &(ip4->addr);
+		family = AF_INET;
+	}
+	else if(cmd == NBD_CTL_CONNECT_TCPIP6)
+	{
+		nbd_control_ip6 *ip6 = (nbd_control_ip6 *) data;
+		port = ip6->tcp_port;
+		addr_bytes = &(ip6->addr);
+		family = AF_INET6;
+	}
+	else
+	{
+		return EINVAL;
+	}
+
+	cc_obrien_NBDBlockService *bs = new cc_obrien_NBDBlockService;
+	bs->init(NULL);  // null properties dictionary
+	if(bs->establish(family, addr_bytes))
+	{
+		return EIO;
+	}
+	bs->attachToParent(IORegistryEntry::getRegistryRoot(), gIOServicePlane);
+	bs->start(NULL);
+	bs->registerService();
+	return 0;
 }
 
 int nbd_open(dev_t dev, int flags, int devtype, proc_t proc)
 {
-	IOLog("nbd open: *** dev=0x%x flags=%x devtype=%x proc=%p\n", dev, flags, devtype, proc);
-	
-	cc_obrien_NBDBlockService *bs = new cc_obrien_NBDBlockService;
-	bs->init(NULL);  // null properties dictionary
-	bs->attachToParent(IORegistryEntry::getRegistryRoot(), gIOServicePlane);
-	bs->start(NULL);
-	bs->registerService();
-
 	return 0;
 }
 
 int nbd_close(dev_t dev, int flags, int devtype, proc_t proc)
 {
 	return 0;
-}
-
-int nbd_read(dev_t dev, uio_t uio, int flags)
-{
-	return EIO;
-}
-
-int nbd_write(dev_t dev, uio_t uio, int flags)
-{
-	return EIO;
-}
-
-int nbd_reset(int x1)
-{
-	return EIO;
-}
-
-int nbd_select(dev_t x1, int x2, void *x3, proc_t x4)
-{
-	return EIO;
-}
-
-int nbd_stop(struct tty *x1, int x2)
-{
-	return EIO;
 }

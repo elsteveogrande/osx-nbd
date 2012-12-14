@@ -11,6 +11,7 @@
 
 #include <IOKit/IOService.h>
 #include <IOKit/IOBufferMemoryDescriptor.h>
+#include <sys/kpi_socket.h>
 
 
 class cc_obrien_NBDBlockService : public IOService
@@ -20,9 +21,11 @@ class cc_obrien_NBDBlockService : public IOService
 private:
 	IOBufferMemoryDescriptor *memory;
 	void *buffer;
+	socket_t *socket;   /* 0 when uninitialized / not yet connected / error occurred and we disconnected */
 	
 protected:
 	bool buildDevice();
+	void shutdown();
 
 public:
 	virtual bool start(IOService *provider);

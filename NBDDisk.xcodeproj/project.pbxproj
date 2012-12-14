@@ -28,6 +28,7 @@
 		94A371BC1652031900E67012 /* NBDDisk-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NBDDisk-Prefix.pch"; sourceTree = "<group>"; };
 		94A371C216520F2C00E67012 /* NBDDiskStorageDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBDDiskStorageDevice.cpp; sourceTree = "<group>"; };
 		94A371C316520F2C00E67012 /* NBDDiskStorageDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDDiskStorageDevice.h; sourceTree = "<group>"; };
+		94D21C0C167ADF0600979812 /* nbd_control.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nbd_control.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +84,7 @@
 				94A371C316520F2C00E67012 /* NBDDiskStorageDevice.h */,
 				940F2BAA1673BC4D0021006D /* NBDBlockService.cpp */,
 				940F2BAB1673BC4D0021006D /* NBDBlockService.h */,
+				94D21C0C167ADF0600979812 /* nbd_control.h */,
 				94A371B41652031700E67012 /* Supporting Files */,
 			);
 			path = NBDDisk;
