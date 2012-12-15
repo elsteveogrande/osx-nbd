@@ -12,14 +12,19 @@
 OSDefineMetaClassAndStructors(cc_obrien_NBDBlockService, IOService)
 
 #define FIXED_BLOCK_SIZE (512)
-#define FIXED_CACHE_SIZE (16777216)
 
 #define super IOService
 
 
+void cc_obrien_NBDBlockService::setSizeMB(int sizeMB)
+{
+	this->size = ((UInt64) 1048576) * ((UInt64) sizeMB);
+}
+
+
 UInt64 cc_obrien_NBDBlockService::getByteCount() const
 {
-	return FIXED_CACHE_SIZE;
+	return this->size;
 }
 
 
@@ -44,16 +49,18 @@ bool cc_obrien_NBDBlockService::isReady()
 
 bool cc_obrien_NBDBlockService::start(IOService *provider)
 {
+	IOLog("block svc starting\n");
 	bool ret = false;
 	this->memory = NULL;
 	this->buffer = NULL;
+	this->nub = NULL;
 
 	if(! super::start(provider))
 	{
 		goto abort;
 	}
 	
-	this->memory = IOBufferMemoryDescriptor::withCapacity(FIXED_CACHE_SIZE, kIODirectionInOut);
+	this->memory = IOBufferMemoryDescriptor::withCapacity(this->getByteCount(), kIODirectionInOut);
 	if(! this->memory)
 	{
 		goto abort;
@@ -74,6 +81,7 @@ bool cc_obrien_NBDBlockService::start(IOService *provider)
 	goto out;
 
 abort:
+	IOLog("block svc aborting\n");
 	if(this->memory)
 	{
 		this->memory->release();
@@ -81,6 +89,7 @@ abort:
 	}
 
 out:
+	IOLog("block svc started\n");
 	return ret;
 }
 
@@ -95,10 +104,32 @@ void cc_obrien_NBDBlockService::free()
 		this->memory = NULL;
 	}
 
+	if(this->nub)
+	{
+		this->nub->release();
+		this->nub = NULL;
+	}
+
 	IOLog("nbdblockservice: freeing super\n");
 	super::free();
+}
 
-	IOLog("nbdblockservice: freed\n");
+
+IOReturn cc_obrien_NBDBlockService::doEjectMedia()
+{
+	IOLog("block svc ejecting\n");
+	if(this->nub)
+	{
+		this->nub->detach(this);
+		this->nub->stop(this);
+		this->nub->release();
+		this->nub = NULL;
+	}
+
+	this->detachFromParent(IORegistryEntry::getRegistryRoot(), gIOServicePlane);
+	
+	IOLog("block svc ejected\n");
+	return kIOReturnSuccess;
 }
 
 
@@ -117,25 +148,24 @@ IOByteCount cc_obrien_NBDBlockService::performWrite(IOMemoryDescriptor *src, UIn
 bool cc_obrien_NBDBlockService::buildDevice()
 {
 	bool ret = false;
-	cc_obrien_NBDDiskStorageDevice *nub = NULL;
 	
-	nub = new cc_obrien_NBDDiskStorageDevice();
-	if(! nub)
+	this->nub = new cc_obrien_NBDDiskStorageDevice();
+	if(! this->nub)
 	{
 		goto abort;
 	}
 	
-	if(! nub->init(NULL))
+	if(! this->nub->init(NULL))
 	{
 		goto abort;
 	}
 	
-	if(! nub->attach(this))
+	if(! this->nub->attach(this))
 	{
 		goto abort;
 	}
 	
-	nub->registerService();
+	this->nub->registerService();
 
 	ret = true;
 	goto out;
@@ -145,10 +175,6 @@ abort:
 
 out:
 	/* note; have to unconditionally un-retain this nub.  The OS itself will retain it */
-	if(nub)
-	{
-		nub->release();
-	}
 
 	return ret;
 }

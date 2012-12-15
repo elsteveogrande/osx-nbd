@@ -36,15 +36,6 @@ bool cc_obrien_NBDDiskStorageDevice::init(OSDictionary *properties)
 		return false;
 	}
 	
-	if(this->provider->getByteCount() % this->provider->getBlockSize())
-	{
-		// not divisible?!
-		return false;
-	}
-	
-	this->blockCount = this->provider->getByteCount() / this->provider->getBlockSize();
-	this->lastAskedState = this->provider->isReady();
-
 	this->setProperty(kIOBSDNameKey, "nbd");
 	this->setProperty(kIOBSDMajorKey, 92);
 	
@@ -64,6 +55,15 @@ bool cc_obrien_NBDDiskStorageDevice::attach(IOService *provider)
 	{
 		return false;
 	}
+
+	if(this->provider->getByteCount() % this->provider->getBlockSize())
+	{
+		// not divisible?!
+		return false;
+	}
+	
+	this->blockCount = this->provider->getByteCount() / this->provider->getBlockSize();
+	this->lastAskedState = this->provider->isReady();
 	
 	return true;
 }
@@ -82,7 +82,8 @@ void cc_obrien_NBDDiskStorageDevice::detach(IOService *provider)
 
 IOReturn cc_obrien_NBDDiskStorageDevice::doEjectMedia()
 {
-	return kIOReturnUnsupported;
+	this->provider->doEjectMedia();
+	return kIOReturnSuccess;
 }
 
 
@@ -159,7 +160,7 @@ IOReturn cc_obrien_NBDDiskStorageDevice::reportBlockSize(UInt64 *blockSize)
 
 IOReturn cc_obrien_NBDDiskStorageDevice::reportEjectability(bool *isEjectable)
 {
-	*isEjectable = false;
+	*isEjectable = true;
 	return kIOReturnSuccess;
 }
 

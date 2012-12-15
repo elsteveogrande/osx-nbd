@@ -178,11 +178,12 @@ int nbd_ioctl(dev_t dev, u_long cmd, caddr_t data, int flags, proc_t proc)
 	}
 
 	cc_obrien_NBDBlockService *bs = new cc_obrien_NBDBlockService;
-	bs->init(NULL);  // null properties dictionary
-	if(bs->establish(family, addr_bytes))
-	{
-		return EIO;
-	}
+	bs->init();
+	bs->setSizeMB(port); /* *** HACK MODE *** */
+//	if(bs->establish(family, addr_bytes))
+//	{
+//		return EIO;
+//	}
 	bs->attachToParent(IORegistryEntry::getRegistryRoot(), gIOServicePlane);
 	bs->start(NULL);
 	bs->registerService();

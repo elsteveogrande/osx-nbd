@@ -10,8 +10,9 @@
 #define __NBDDisk__NBDDiskStorageDevice__
 
 #include <IOKit/storage/IOBlockStorageDevice.h>
-#include "NBDBlockService.h"
 
+
+class cc_obrien_NBDBlockService;
 
 class cc_obrien_NBDDiskStorageDevice : public IOBlockStorageDevice
 {
