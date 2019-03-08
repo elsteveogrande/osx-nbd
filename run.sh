@@ -1,5 +1,10 @@
 #!/bin/bash
 
-# (to install into kernel)
-sudo chown -R root:wheel NBDDisk.kext && sudo chmod 755 NBDDisk.kext && sudo kextutil -v NBDDisk.kext
+set -e
+set -x
 
+KEXT=build/Release/NBDDisk.kext
+
+sudo chown -R root:wheel "${KEXT}"
+sudo chmod 755 "${KEXT}"
+sudo kextutil -v "${KEXT}"

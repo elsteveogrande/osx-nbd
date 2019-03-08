@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>cc.obrien.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -26,12 +26,12 @@
 	<dict>
 		<key>NBDDisk</key>
 		<dict>
-			<key>IOKitDebug</key>
-			<integer>65535</integer>
 			<key>CFBundleIdentifier</key>
 			<string>cc.obrien.${PRODUCT_NAME:rfc1034identifier}</string>
 			<key>IOClass</key>
 			<string>cc_obrien_NBDManager</string>
+			<key>IOKitDebug</key>
+			<integer>65535</integer>
 			<key>IOMatchCategory</key>
 			<string>cc_obrien_NBDManager</string>
 			<key>IOProviderClass</key>
@@ -41,13 +41,13 @@
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2012 Steve O&apos;Brien. All rights reserved. [Source under BSD-2-Clause license]</string>
+	<string>Copyright 2019-present Steve O&apos;Brien; all rights reserved; source under BSD-2-Clause license</string>
 	<key>OSBundleLibraries</key>
 	<dict>
-		<key>com.apple.kpi.bsd</key>
-		<string>9.0.0</string>
 		<key>com.apple.iokit.IOStorageFamily</key>
 		<string>1.6</string>
+		<key>com.apple.kpi.bsd</key>
+		<string>9.0.0</string>
 		<key>com.apple.kpi.iokit</key>
 		<string>9.0.0</string>
 		<key>com.apple.kpi.libkern</key>

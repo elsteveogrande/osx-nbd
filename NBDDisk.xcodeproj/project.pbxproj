@@ -3,32 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		940F2BAC1673BC4D0021006D /* NBDBlockService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 940F2BAA1673BC4D0021006D /* NBDBlockService.cpp */; };
-		940F2BAD1673BC4D0021006D /* NBDBlockService.h in Headers */ = {isa = PBXBuildFile; fileRef = 940F2BAB1673BC4D0021006D /* NBDBlockService.h */; };
-		943611961677C79500036A9B /* NBDManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 943611941677C79500036A9B /* NBDManager.cpp */; };
-		943611971677C79500036A9B /* NBDManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 943611951677C79500036A9B /* NBDManager.h */; };
 		94A371B81652031800E67012 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 94A371B61652031700E67012 /* InfoPlist.strings */; };
-		94A371C416520F2D00E67012 /* NBDDiskStorageDevice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 94A371C216520F2C00E67012 /* NBDDiskStorageDevice.cpp */; };
-		94A371C516520F2D00E67012 /* NBDDiskStorageDevice.h in Headers */ = {isa = PBXBuildFile; fileRef = 94A371C316520F2C00E67012 /* NBDDiskStorageDevice.h */; };
+		B68202112232FE2000166BF9 /* NBDDisk.cc in Sources */ = {isa = PBXBuildFile; fileRef = B682020F2232FE2000166BF9 /* NBDDisk.cc */; };
+		B68202122232FE2000166BF9 /* NBDDisk.h in Headers */ = {isa = PBXBuildFile; fileRef = B68202102232FE2000166BF9 /* NBDDisk.h */; };
+		B6D97C3F2232F6A200D4909D /* NBDDevice.cc in Sources */ = {isa = PBXBuildFile; fileRef = B6D97C3E2232F6A200D4909D /* NBDDevice.cc */; };
+		B6D97C422232F71C00D4909D /* NBDManager.cc in Sources */ = {isa = PBXBuildFile; fileRef = B6D97C402232F71C00D4909D /* NBDManager.cc */; };
+		B6D97C432232F71C00D4909D /* NBDManager.h in Headers */ = {isa = PBXBuildFile; fileRef = B6D97C412232F71C00D4909D /* NBDManager.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		940F2BAA1673BC4D0021006D /* NBDBlockService.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBDBlockService.cpp; sourceTree = "<group>"; };
-		940F2BAB1673BC4D0021006D /* NBDBlockService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDBlockService.h; sourceTree = "<group>"; };
-		943611941677C79500036A9B /* NBDManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBDManager.cpp; sourceTree = "<group>"; };
-		943611951677C79500036A9B /* NBDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDManager.h; sourceTree = "<group>"; };
 		94A371AE1652031500E67012 /* NBDDisk.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NBDDisk.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A371B21652031600E67012 /* Kernel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kernel.framework; path = System/Library/Frameworks/Kernel.framework; sourceTree = SDKROOT; };
 		94A371B51652031700E67012 /* NBDDisk-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NBDDisk-Info.plist"; sourceTree = "<group>"; };
 		94A371B71652031700E67012 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		94A371BC1652031900E67012 /* NBDDisk-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NBDDisk-Prefix.pch"; sourceTree = "<group>"; };
-		94A371C216520F2C00E67012 /* NBDDiskStorageDevice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NBDDiskStorageDevice.cpp; sourceTree = "<group>"; };
-		94A371C316520F2C00E67012 /* NBDDiskStorageDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDDiskStorageDevice.h; sourceTree = "<group>"; };
-		94D21C0C167ADF0600979812 /* nbd_control.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nbd_control.h; sourceTree = "<group>"; };
+		B682020F2232FE2000166BF9 /* NBDDisk.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NBDDisk.cc; sourceTree = "<group>"; };
+		B68202102232FE2000166BF9 /* NBDDisk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBDDisk.h; sourceTree = "<group>"; };
+		B6D97C3D2232F69000D4909D /* NBDDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBDDevice.h; sourceTree = "<group>"; };
+		B6D97C3E2232F6A200D4909D /* NBDDevice.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NBDDevice.cc; sourceTree = "<group>"; };
+		B6D97C402232F71C00D4909D /* NBDManager.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NBDManager.cc; sourceTree = "<group>"; };
+		B6D97C412232F71C00D4909D /* NBDManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NBDManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,14 +75,13 @@
 		94A371B31652031600E67012 /* NBDDisk */ = {
 			isa = PBXGroup;
 			children = (
-				943611941677C79500036A9B /* NBDManager.cpp */,
-				943611951677C79500036A9B /* NBDManager.h */,
-				94A371C216520F2C00E67012 /* NBDDiskStorageDevice.cpp */,
-				94A371C316520F2C00E67012 /* NBDDiskStorageDevice.h */,
-				940F2BAA1673BC4D0021006D /* NBDBlockService.cpp */,
-				940F2BAB1673BC4D0021006D /* NBDBlockService.h */,
-				94D21C0C167ADF0600979812 /* nbd_control.h */,
 				94A371B41652031700E67012 /* Supporting Files */,
+				B6D97C3D2232F69000D4909D /* NBDDevice.h */,
+				B6D97C3E2232F6A200D4909D /* NBDDevice.cc */,
+				B6D97C402232F71C00D4909D /* NBDManager.cc */,
+				B6D97C412232F71C00D4909D /* NBDManager.h */,
+				B682020F2232FE2000166BF9 /* NBDDisk.cc */,
+				B68202102232FE2000166BF9 /* NBDDisk.h */,
 			);
 			path = NBDDisk;
 			sourceTree = "<group>";
@@ -95,7 +91,6 @@
 			children = (
 				94A371B51652031700E67012 /* NBDDisk-Info.plist */,
 				94A371B61652031700E67012 /* InfoPlist.strings */,
-				94A371BC1652031900E67012 /* NBDDisk-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -107,9 +102,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94A371C516520F2D00E67012 /* NBDDiskStorageDevice.h in Headers */,
-				940F2BAD1673BC4D0021006D /* NBDBlockService.h in Headers */,
-				943611971677C79500036A9B /* NBDManager.h in Headers */,
+				B68202122232FE2000166BF9 /* NBDDisk.h in Headers */,
+				B6D97C432232F71C00D4909D /* NBDManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,11 +135,11 @@
 		94A371A31652031300E67012 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Steve O'Brien";
 			};
 			buildConfigurationList = 94A371A61652031300E67012 /* Build configuration list for PBXProject "NBDDisk" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -187,9 +181,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94A371C416520F2D00E67012 /* NBDDiskStorageDevice.cpp in Sources */,
-				940F2BAC1673BC4D0021006D /* NBDBlockService.cpp in Sources */,
-				943611961677C79500036A9B /* NBDManager.cpp in Sources */,
+				B68202112232FE2000166BF9 /* NBDDisk.cc in Sources */,
+				B6D97C422232F71C00D4909D /* NBDManager.cc in Sources */,
+				B6D97C3F2232F6A200D4909D /* NBDDevice.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,16 +205,33 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -228,7 +239,9 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
@@ -240,20 +253,39 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -261,19 +293,19 @@
 		94A371C01652031900E67012 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_OPTIMIZATION_LEVEL = 2;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NBDDisk/NBDDisk-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				CURRENT_PROJECT_VERSION = 1.0.1;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "NBDDisk/NBDDisk-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MODULE_NAME = cc.obrien.NBDDisk;
-				MODULE_VERSION = 1.0.0d1;
+				MODULE_VERSION = 1.0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.obrien.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = kext;
 			};
 			name = Debug;
@@ -281,20 +313,20 @@
 		94A371C11652031900E67012 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_OPTIMIZATION_LEVEL = 2;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NBDDisk/NBDDisk-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				CURRENT_PROJECT_VERSION = 1.0.1;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_VERSION = "";
 				INFOPLIST_FILE = "NBDDisk/NBDDisk-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MODULE_NAME = cc.obrien.NBDDisk;
-				MODULE_VERSION = 1.0.0d1;
+				MODULE_VERSION = 1.0.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.obrien.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = kext;
 			};
 			name = Release;

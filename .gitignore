@@ -1,4 +1,5 @@
+.DS_Store
 NBDDisk.xcodeproj/project.xcworkspace/
 NBDDisk.xcodeproj/xcuserdata/
 nbd-setup
-
+build/
