@@ -7,6 +7,8 @@
 
 #include <IOKit/storage/IOBlockStorageDevice.h>
 
+#include "NBDDisk.h"
+
 class cc_obrien_NBDManager;
 
 class cc_obrien_NBDDevice : public IOBlockStorageDevice {
@@ -41,4 +43,5 @@ private:
   uint32_t minor_;
   cc_obrien_NBDManager* manager_{nullptr};
   cc_obrien_NBDConnection* conn_{nullptr};
+  uint64_t prevConnID_{0};
 };

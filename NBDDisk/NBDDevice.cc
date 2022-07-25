@@ -32,7 +32,7 @@ bool cc_obrien_NBDDevice::attach(IOService* provider) {
   manager_ = OSDynamicCast(cc_obrien_NBDManager, provider);
   if (!manager_) { return false; }
   conn_ = new cc_obrien_NBDConnection(minor_);
-  if (!(conn_ && conn_->id_)) { re´´turn false; }
+  if (!(conn_ && conn_->id())) { return false; }
   return true;
 }
 
@@ -98,11 +98,12 @@ IOReturn cc_obrien_NBDDevice::reportMaxValidBlock(uint64_t* maxBlock) {
 
 IOReturn cc_obrien_NBDDevice::reportMediaState(bool* mediaPresent,
                                                bool* changedState) {
-  *mediaPresent = checkAvailable();
+  auto connID = conn_ ? conn_->id() : 0;
+  *mediaPresent = (connID != 0);
   if (changedState != nullptr) {
-    *changedState = (prevState_ == *mediaPresent);
+    *changedState = (prevConnID_ == connID);
   }
-  prevState_ = *mediaPresent;
+  prevConnID_ = connID;
   return kIOReturnSuccess;
 }
 

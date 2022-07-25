@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <stdint.h>
+
 class cc_obrien_NBDConnection {
 public:
   explicit cc_obrien_NBDConnection(int minor) : minor_(minor) {}
